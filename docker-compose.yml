@@ -20,8 +20,8 @@ services:
   https-portal:
     image: steveltn/https-portal
     ports:
-       - '9501:80'
-       - '9500:443'
+       - '80:80'
+       - '443:443'
     depends_on:
       - moesifproxy
     environment:
