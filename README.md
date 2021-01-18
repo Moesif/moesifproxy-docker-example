@@ -50,4 +50,4 @@ docker-compose -f docker-compose.yml up -d
 
 ### ValueError: Challenge did not pass for
 
-Ensure your domain is reachable by the public internet. Because a probe to your domain is made shortly after start up, ensure any firewalls or load balancers are correctly configured.
+Ensure your domain is reachable by the public internet on both ports 443 and 80. Because a probe to your domain is made quickly after boot, ensure any firewalls or load balancers probes are correctly configured to route traffic to your virtual machine before starting the containers. 
