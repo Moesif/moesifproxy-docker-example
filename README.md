@@ -11,6 +11,13 @@ SSL certificates are automatically created via Let's Encrypt using [https-portal
 Within your AWS Console, create a new [Key Management Service](https://aws.amazon.com/kms/). This handles key generation and storage. 
 Because Moesif doesn't have access to your master encryption keys, Moesif and its employees cannot view your event data in plain text.
 
+#### AWS_CUSTOMER_KEY_ID
+AWS_CUSTOMER_KEY_ID is the Customer managed key (CMK) in AWS KMS, To find KeyId follow the instructions [here](https://docs.aws.amazon.com/kms/latest/developerguide/find-cmk-id-arn.html)
+#### AWS_KMS_REGION
+AWS_KMS_REGION is a string representing aws region where AWS KMS is configured. Defaults to 'us-west-2'
+#### AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
+These are access keys needed to access AWS KMS via api. More information about access keys [here](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys). Make sure that IAM user/role associated with the access keys has permissions to access AWS KMS.
+
 > If you don't have an AWS account, you can create one for free. You can still run the actual docker container in your cloud provider of choice.
 
 ### 2. Update DNS provider
