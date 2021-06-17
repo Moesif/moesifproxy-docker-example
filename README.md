@@ -17,6 +17,12 @@ AWS_CUSTOMER_KEY_ID is the Customer managed key (CMK) in AWS KMS, To find KeyId 
 AWS_KMS_REGION is a string representing aws region where AWS KMS is configured. Defaults to 'us-west-2'
 #### AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
 These are access keys needed to access AWS KMS via api. More information about access keys [here](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys). Make sure that IAM user/role associated with the access keys has permissions to access AWS KMS.
+#### AWS_SECURE_PROXY_ROLE_ARN
+When Secure proxy is run in AWS,  AWS supports multiple ways to inject the auth credentials directly to a EC2 instance or via Kubernetes service accounts.
+In this case pass the IAM role AWS_SECURE_PROXY_ROLE_ARN as environment variable, Secure Proxy will assume this role to gain auth access to AWS KMS. 
+Note for Secure Proxy to assume role AWS_SECURE_PROXY_ROLE_ARN, base creds should have been injected already by AWS or K8s service accounts to pods.
+
+Note: (AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY) Or AWS_SECURE_PROXY_ROLE_ARN is needed for Secure Proxy to access AWS KMS
 
 > If you don't have an AWS account, you can create one for free. You can still run the actual docker container in your cloud provider of choice.
 

@@ -1,0 +1,29 @@
+version: '2'
+services:
+
+  moesifproxy:
+    restart: always
+    image: moesif/moesifproxy
+    ports:
+      - 9500
+    environment:
+      - MOESIF_APPLICATION_ID=
+      - MOESIF_MANAGEMENT_API_KEY=
+      - AWS_CUSTOMER_KEY_ID=
+      - AWS_SECURE_PROXY_ROLE_ARN=
+    logging:
+      options:
+        max-size: 100m
+        max-file: "1"
+
+  https-portal:
+    image: steveltn/https-portal
+    ports:
+       - '80:80'
+       - '443:443'
+    depends_on:
+      - moesifproxy
+    environment:
+      - DOMAINS=moesifproxy.acmeinc.com -> http://moesifproxy:9500
+      - DEBUG=false
+      - STAGE=production
